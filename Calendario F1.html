@@ -1,0 +1,710 @@
+   <!-- Declaração do tipo de documento HTML -->
+   <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Configuração de codificação de caracteres e viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>F1 2025 - Equipes e Pilotos</title>
+
+  <!-- Link para o arquivo CSS externo -->
+  <link rel="stylesheet" href="styles.css">
+<body>
+  <!-- Título principal da página -->
+  <h1>Fórmula 1 - Temporada 2025</h1>
+  
+  <!-- Botões para interagir com a página -->
+  <div class="button-container">
+    <!-- Botão para alternar a exibição de equipes e pilotos -->
+    <button class="btn" id="toggle-btn" onclick="toggleEquipes()">Ver Equipes e Pilotos</button>
+    <!-- Botão para abrir um link externo -->
+    <button class="btn" onclick="window.open('https://band.uol.com.br/esportes/automobilismo/formula-1', '_blank')">Onde Assistir</button>
+  </div>
+  
+  <!-- Contêiner para exibir as equipes -->
+  <div id="teams-container"></div>
+ 
+  <!-- Sobreposição e contêiner para exibir detalhes dos pilotos -->
+  <div id="overlay" onclick="fecharDetalhes()"></div>
+  <div id="driver-info"></div>
+  
+  <!-- Layout principal com três colunas -->
+  <div class="main-container">
+    <!-- Coluna da esquerda: Classificação Pilotos -->
+    <div class="column">
+      <div class="classification-container">
+        <h2>Classificação de Pilotos 2025</h2>
+        <!-- Tabela com a classificação dos pilotos -->
+        <table class="classification-table pilots-table">
+          <thead>
+            <tr>
+              <th>Pos.</th>
+              <th>Piloto</th>
+              <th>Equipe</th>
+              <th>Pts</th>
+              <th>Vit.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dados de cada piloto -->
+            <tr>
+              <td>1</td>
+              <td>Lando Norris</td>
+              <td>McLaren</td>
+              <td>77</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Oscar Piastri</td>
+              <td>McLaren</td>
+              <td>74</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Max Verstappen</td>
+              <td>Red Bull</td>
+              <td>69</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>George Russell</td>
+              <td>Mercedes</td>
+              <td>63</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Charles Leclerc</td>
+              <td>Ferrari</td>
+              <td>32</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Kimi Antonelli</td>
+              <td>Mercedes</td>
+              <td>30</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Lewis Hamilton</td>
+              <td>Ferrari</td>
+              <td>25</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Alex Albon</td>
+              <td>Williams</td>
+              <td>18</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Esteban Ocon</td>
+              <td>Haas</td>
+              <td>14</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Lance Stroll</td>
+              <td>Aston Martin</td>
+              <td>10</td>
+              <td>0</td>
+            </tr>
+            <td>11</td>
+            <td>Pierre Gasly</td>
+            <td>Alpine</td>
+            <td>6</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>Nico Hulkenberg</td>
+            <td>Sauber</td>
+            <td>6</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>Oliver Bearman</td>
+            <td>Haas</td>
+            <td>6</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>Yuki Tsunoda</td>
+            <td>Red Bull</td>
+            <td>5</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>Isack Hadjar</td>
+            <td>Racing Bulls</td>
+            <td>4</td>
+            <td>0</td>
+          </tr>
+            <tr>
+              <td>16</td>
+              <td>Carlos Sainz</td>
+              <td>Willians</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>Fernando Alonso</td>
+              <td>Aston Martin</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+            <tr>
+              <td>18</td>
+              <td>Liam Lawson</td>
+              <td>Racing Bulls</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>Jack Doohan</td>
+              <td>Alpine</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>Gabriel Bortoleto</td>
+              <td>Sauber</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Coluna central: Calendário de Corridas -->
+    <div class="column-center">
+      <h2 class="section-title">Calendário de Corridas 2025</h2>
+      <!-- Contêiner para exibir as corridas -->
+      <div id="races-container">
+       
+      </div>
+    </div>
+    
+    <!-- Coluna da direita: Classificação Construtores -->
+    <div class="column">
+      <div class="classification-container">
+        <h2>Classificação de Construtores 2025</h2>
+        <!-- Tabela com a classificação das equipes -->
+        <table class="classification-table teams-table">
+          <thead>
+            <tr>
+              <th>Pos.</th>
+              <th>Equipe</th>
+              <th>Pts</th>
+              <th>Vit.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dados de cada equipe -->
+            <tr>
+              <td>1</td>
+              <td>McLaren</td>
+              <td>151</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Mercedes</td>
+              <td>93</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Red Bull Racing</td>
+              <td>71</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Ferrari</td>
+              <td>57</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Haas</td>
+              <td>20</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Williams</td>
+              <td>19</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Aston Martin</td>
+              <td>10</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Racing Bulls</td>
+              <td>7</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Alpine</td>
+              <td>6</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Sauber</td>
+              <td>6</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const teams = [
+      {
+        team: "Ferrari",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/ferrari-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/ferrari.png",
+        drivers: [
+          { nome: "Charles Leclerc", bandeira: "mc" },
+          { nome: "Lewis Hamilton", bandeira: "gb" }
+        
+        ]
+      },
+      {
+        team: "Red Bull Racing",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/red-bull-racing-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/red-bull-racing.png",
+        drivers: [
+          { nome: "Max Verstappen", bandeira: "nl" },
+          { nome: "Yuki Tsunoda", bandeira: "jp" }
+        ]
+      },
+      {
+        team: "Mercedes",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/mercedes-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/mercedes.png",
+        drivers: [
+          { nome: "George Russell", bandeira: "gb" },
+          { nome: "Kimi Antonelli", bandeira: "it" }
+        ]
+      },
+      {
+        team: "McLaren",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/mclaren-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/mclaren.png",
+        drivers: [
+          { nome: "Lando Norris", bandeira: "gb" },
+          { nome: "Oscar Piastri", bandeira: "au" }
+        ]
+      },
+      {
+        team: "Aston Martin",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/aston-martin-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/aston-martin.png",
+        drivers: [
+          { nome: "Fernando Alonso", bandeira: "es" },
+          { nome: "Lance Stroll", bandeira: "ca" }
+        ]
+      },
+      {
+        team: "Alpine",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/alpine-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/alpine.png",
+        drivers: [
+          { nome: "Pierre Gasly", bandeira: "fr" },
+          { nome: "Jack Doohan", bandeira: "au" }
+        ]
+      },
+      {
+        team: "Haas",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/haas-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/haas.png",
+        drivers: [
+          { nome: "Esteban Ocon", bandeira: "fr" },
+          { nome: "Oliver Bearman", bandeira: "gb" }
+        ]
+      },
+      {
+        team: "Willians",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/williams-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/williams.png",
+        drivers: [
+          { nome: "Alexander Albon", bandeira: "th" },
+          { nome: "Carlos Sainz", bandeira: "es" }
+        ]
+      },
+      {
+        team: "Racing Bulls",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/racing-bulls-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/racing-bulls.png",
+        drivers: [
+          { nome: "Liam Lawson", bandeira: "nz" },
+          { nome: "Isack Hadjar", bandeira: "fr" }
+        ]
+      },
+      {
+        team: "Kick Sauber",
+        logo: "https://media.formula1.com/content/dam/fom-website/teams/2025/kick-sauber-logo.png",
+        imagem: "https://media.formula1.com/d_team_car_fallback_image.png/content/dam/fom-website/teams/2025/kick-sauber.png",
+        drivers: [
+          { nome: "Nico Hulkenberg", bandeira: "de" },
+          { nome: "Gabriel Bortoleto", bandeira: "br" }
+        ]
+      },
+    ];
+
+    const races = [
+      { race: "GP da Austrália", 
+          date: "19 de Março",
+          url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_771/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Australia_Circuit',
+          primeiraEdicao: "1996", tempoRecorde: "1:19.813 (Charles Leclerc (2024)", maiorVencedor: "Michael Schumacher (4 vitórias)", comprimento: "5.303 km", numVoltas: 58},
+
+      { race: "GP da China", 
+          date: "23 de Março",
+          url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/China_Circuit',
+          primeiraEdicao: "2004", tempoRecorde: "1:32.238 (Michael Schumacher (2004)", maiorVencedor: "Lewis Hamilton (6 vitórias)", comprimento: "5.451 km", numVoltas: 56},
+
+      { race: "GP da Japão", 
+          date: "6 de Abril",
+          url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Japan_Circuit',
+          primeiraEdicao: "1987", tempoRecorde: "1:30.965 (Kimi Antonelli (2025)", maiorVencedor: "Michael Schumacher (6 vitórias)", comprimento: "5.807 km", numVoltas: 53},
+
+      { race: "GP do Bahrein", 
+        date: "13 de Abril",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Bahrain_Circuit',
+        primeiraEdicao: "2004", tempoRecorde: "1:31.447 (Pedro de la Rosa (2005)", maiorVencedor: "Lewis Hamilton (5 vitórias)", comprimento: "5.412 km", numVoltas: 57},
+
+      { race: "GP da Arábia Saudita", 
+        date: "20 de Abril",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Saudi_Arabia_Circuit',
+        primeiraEdicao: "2021", tempoRecorde: "1:30.734 (Lewis Hamilton (2021)", maiorVencedor: "Max Verstappen (2 vitórias)", comprimento: "6.174 km", numVoltas: 50},
+
+      { race: "GP de Miami", 
+        date: "4 de Maio",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Miami_Circuit',
+        primeiraEdicao: "2022", tempoRecorde: "1:29.708 (Max Verstappen (2023)", maiorVencedor: "Max Verstappen (2 vitórias)", comprimento: "5.412 km", numVoltas: 57},
+
+      { race: "GP da Emília-Romanha",
+        date: "18 de Maio",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Emilia_Romagna_Circuit',
+        primeiraEdicao: "1980", tempoRecorde: "1:15.484 (Lewis Hamilton (2020)", maiorVencedor: "Michael Schumacher (7 vitórias), na pista atual Max Verstappen (3 vitórias)", comprimento: "4.909 km", numVoltas: 63},
+
+      { race: "GP de Mônaco", 
+        date: "25 de Maio",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Monaco_Circuit',
+        primeiraEdicao: "1950", tempoRecorde: "1:12.909 (Lewis Hamilton (2021)", maiorVencedor: "Ayrton Senna (6 vitórias)", comprimento: "3.337km", numVoltas: 58},
+
+      { race: "GP da Espanha",
+        date: "1 de Junho",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Spain_Circuit',
+        primeiraEdicao: "1991", tempoRecorde: "1:16.330 (Max Verstappen (2023)", maiorVencedor: "Michael Schumacher e Lewis Hamilton (6 vitórias)", comprimento: "4.657 km", numVoltas: 66},
+
+      { race: "GP do Canadá",
+        date: "15 de Junho",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Canada_Circuit',
+        primeiraEdicao: "1978", tempoRecorde: "1:13.078 (Valtteri Bottas (2019)", maiorVencedor: "Michael Schumacher e Lewis Hamilton (7 vitórias)", comprimento: "4.361 km", numVoltas: 70},
+
+      { race: "GP da Áustria ", 
+        date: "29 de Junho",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Austria_Circuit',
+        primeiraEdicao: "1970", tempoRecorde: "1:05.619 (Carlos Sainz (2020)", maiorVencedor: "Max Verstappen (4 vitórias)", comprimento: "4.318 km", numVoltas: 71},
+
+      { race: "GP da Inglaterra",
+        date: "6 de Julho",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Great_Britain_Circuit',
+        primeiraEdicao: "1950", tempoRecorde: "1:27.097 (Max Verstappen (2020)", maiorVencedor: "Lewis Hamilton (8 vitórias)", comprimento: "5.891 km", numVoltas: 52},
+
+      { race: "GP da Bélgica",
+        date: "27 de Julho",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Belgium_Circuit',
+        primeiraEdicao: "1950", tempoRecorde: "1:44.701 (Sergio Perez (2024)", maiorVencedor: "Michael Schumacher (6 vitórias)", comprimento: "7.004 km", numVoltas: 44},
+
+      { race: "GP da Hungria",
+        date: "3 de Agosto",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Hungary_Circuit',
+        primeiraEdicao: "1986", tempoRecorde: "1:16.627 (Lewis Hamilton (2020)", maiorVencedor: "Lewis Hamilton (8 vitórias)", comprimento: "4.381 km", numVoltas: 70},
+
+      { race: "GP da Holanda", 
+        date: "31 de Agosto",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Netherlands_Circuit',
+        primeiraEdicao: "1952", tempoRecorde: "1:11.097 (Lewis Hamilton (2021)", maiorVencedor: "Jim Clark (4 vitórias)", comprimento: "4.259 km", numVoltas: 72},
+
+      { race: "GP da Itália", 
+        date: "7 de Setembro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Italy_Circuit',
+        primeiraEdicao: "1950", tempoRecorde: "1:21.046 (Rubens Barrichello (2004)", maiorVencedor: "Michael Schumacher e Lewis Hamilton (5 vitórias)", comprimento: "5.793 km", numVoltas: 53},
+
+      { race: "GP do Azerbaijão", 
+        date: "21 de Setembro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Baku_Circuit',
+        primeiraEdicao: "2016", tempoRecorde: "1:43.009 (Charles Leclerc (2019)", maiorVencedor: "Sergio Perez (8 vitórias)", comprimento: "6.003 km", numVoltas: 51},
+
+      { race: "GP de Singapura", 
+        date: "5 de Outubro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Singapore_Circuit',
+        primeiraEdicao: "2008", tempoRecorde: "1:34.486 (Daniel Ricciardo (2024)", maiorVencedor: "Sebastian Vettel (5 vitórias)", comprimento: "4.940 km", numVoltas: 62},
+      
+      { race: "GP dos Estados Unidos", 
+        date: "19 de Outubro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/USA_Circuit',
+        primeiraEdicao: "2012", tempoRecorde: "1:36.169 (Charles Leclerc (2019)", maiorVencedor: "Lewis Hamilton (6 vitórias)", comprimento: "5.513 km", numVoltas: 56},
+
+      { race: "GP do México", 
+        date: "26 de Outubro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Mexico_Circuit',
+        primeiraEdicao: "1963", tempoRecorde: "1:17.774 (Valtteri Bottas (2021)", maiorVencedor: "Max Verstappen (5 vitórias)", comprimento: "4.304 km", numVoltas: 71},
+
+      { race: "GP do Brasil", 
+        date: "9 de Novembro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Brazil_Circuit',
+        primeiraEdicao: "1973", tempoRecorde: "1:10.540 (Valtteri Bottas (2018)", maiorVencedor: "Michael Schumacher (4 vitórias)", comprimento: "4.309 km", numVoltas: 71},
+
+      { race: "GP de Las Vegas", 
+        date: "22 de Novembro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Las_Vegas_Circuit',
+        primeiraEdicao: "2023", tempoRecorde: "1:34.876 (Lando Norris (2024)", maiorVencedor: "Max Verstappen (1 vitória)", comprimento: "6.201 km", numVoltas: 50},
+
+      { race: "GP do Catar",
+        date: "30 de Novembro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Qatar_Circuit',
+        primeiraEdicao: "2021", tempoRecorde: "1:22.384 (Lando Norris (2024)", maiorVencedor: "Max Verstappen e Lewis Hamilton (1 vitória)", comprimento: "5.419 km", numVoltas: 57},
+
+      { race: "GP de Abu Dhabi", 
+        date: "7 de Dezembro",
+        url:'https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Abu_Dhabi_Circuit',
+        primeiraEdicao: "2009", tempoRecorde: "1:25.637 (Kevin Magnussen (2024)", maiorVencedor: "Lewis Hamilton (5 vitórias)", comprimento: "5.281 km", numVoltas: 58},
+    ];
+
+
+    const driverStats = {
+      "Max Verstappen": {
+        numero: 1,
+        idade: 27,
+        nacionalidade: "Holandesa",
+        corridas: 213,
+        vitorias: 64,
+        podios: 114,
+        titulos: 4,
+        foto: "https://media.formula1.com/content/dam/fom-website/drivers/2024Drivers/verstappen.jpg.transform/2col/image.jpg"
+      },
+      "George Russell": {
+        numero: 63,
+        idade: 27,
+        nacionalidade: "Britânica",
+        corridas: 132,
+        vitorias: 3,
+        podios: 18,
+        titulos: 0,
+        foto: "https://media.formula1.com/content/dam/fom-website/drivers/2024Drivers/russell.jpg.transform/2col/image.jpg"
+      },
+      "Kimi Antonelli": {
+        numero: 12,
+        idade: 18,
+        nacionalidade: "Italiana",
+        corridas: 4,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/antonelli"
+      },
+      "Yuki Tsunoda": {
+        numero: 22,
+        idade: 24,
+        nacionalidade: "Japonesa",
+        corridas: 91,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/tsunoda"
+      },
+      "Charles Leclerc": {
+        numero: 16,
+        idade: 27,
+        nacionalidade: "Monegasca",
+        corridas: 151,
+        vitorias: 8,
+        podios: 43,
+        titulos: 0,
+        foto: "https://media.formula1.com/content/dam/fom-website/drivers/2024Drivers/leclerc.jpg.transform/2col/image.jpg"
+      },
+      "Lewis Hamilton": {
+        numero: 44,
+        idade: 40,
+        nacionalidade: "Britânica",
+        corridas: 360,
+        vitorias: 105,
+        podios: 202,
+        titulos: 7,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/hamilton"
+      },
+      "Lando Norris": {
+        numero: 4,
+        idade: 25,
+        nacionalidade: "Britânica",
+        corridas: 132,
+        vitorias: 5,
+        podios: 30,
+        titulos: 0,
+        foto: "https://media.formula1.com/content/dam/fom-website/drivers/2024Drivers/norris.jpg.transform/2col/image.jpg"
+      },
+      "Oscar Piastri": {
+        numero: 81,
+        idade: 24,
+        nacionalidade: "Australiana",
+        corridas: 50,
+        vitorias: 4,
+        podios: 13,
+        titulos: 0,
+        foto: "https://media.formula1.com/content/dam/fom-website/drivers/2024Drivers/piastri.jpg.transform/2col/image.jpg"
+      },
+      "Fernando Alonso": {
+        numero: 14,
+        idade: 43,
+        nacionalidade: "Espanhola",
+        corridas: 407,
+        vitorias: 32,
+        podios: 106,
+        titulos: 2,
+        foto: "https://media.formula1.com/content/dam/fom-website/drivers/2024Drivers/alonso.jpg.transform/2col/image.jpg"
+      },
+      "Lance Stroll": {
+        numero: 18,
+        idade: 26,
+        nacionalidade: "Canadense",
+        corridas: 170,
+        vitorias: 0,
+        podios: 3,
+        titulos: 0,
+        foto: "https://media.formula1.com/content/dam/fom-website/drivers/2024Drivers/stroll.jpg.transform/2col/image.jpg"
+      },
+      "Alexander Albon": {
+        numero: 23,
+        idade: 29,
+        nacionalidade: "Tailandes",
+        corridas: 108,
+        vitorias: 0,
+        podios: 2,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/albon"
+      },
+      "Carlos Sainz": {
+        numero: 55,
+        idade: 31,
+        nacionalidade: "Espanhola",
+        corridas: 210,
+        vitorias: 4,
+        podios: 27,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/sainz"
+      },
+      "Esteban Ocon": {
+        numero: 31,
+        idade: 29,
+        nacionalidade: "Francesa",
+        corridas: 160,
+        vitorias: 1,
+        podios: 4,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/ocon"
+      },
+      "Oliver Bearman": {
+        numero: 87,
+        idade: 19,
+        nacionalidade: "Britânica",
+        corridas: 7,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/bearman"
+      },
+      "Liam Lawson": {
+        numero: 30,
+        idade: 23,
+        nacionalidade: "Neozelandêsa",
+        corridas: 15,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/fom-website/drivers/2025Drivers/lawson-racing-bulls"
+      },
+      "Isack Hadjar": {  
+        numero: 6,
+        idade: 20,
+        nacionalidade: "Francesa",
+        corridas: 4,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/hadjar"
+      },
+      "Pierre Gasly": {  
+        numero: 10,
+        idade: 29,
+        nacionalidade: "Francesa",
+        corridas: 157,
+        vitorias: 1,
+        podios: 5,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/gasly"
+      },
+      "Jack Doohan": {  
+        numero: 7,
+        idade: 22,
+        nacionalidade: "Austriaca",
+        corridas: 5,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/doohan"
+      },
+      "Nico Hulkenberg": {  
+        numero: 27,
+        idade: 37,
+        nacionalidade: "Alemã",
+        corridas: 231,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/hulkenberg"
+      },
+      "Gabriel Bortoleto": {  
+        numero: 5,
+        idade: 20,
+        nacionalidade: "Brasileira",
+        corridas: 4,
+        vitorias: 0,
+        podios: 0,
+        titulos: 0,
+        foto: "https://media.formula1.com/image/upload/f_auto,c_limit,q_auto,w_1320/content/dam/fom-website/drivers/2025Drivers/bortoleto"
+      },
+    };
+
+  </script>
+  <script src="scripts.js" defer></script>
+</body>
+</html>
